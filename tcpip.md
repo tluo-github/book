@@ -73,3 +73,12 @@
 
 > 网络接口层实际上并不是因特网协议组中的一部分，但是它是数据包从一个设备的网络层传输到另外一个设备的网络层的方法。
 
+
+参考链接:
+* [https://zh.wikipedia.org/wiki/TCP/IP协议族](https://zh.wikipedia.org/wiki/TCP/IP协议族)
+* [https://zh.wikipedia.org/wiki/网际协议](https://zh.wikipedia.org/wiki/网际协议)
+* [https://zh.wikipedia.org/wiki/地址解析协议](https://zh.wikipedia.org/wiki/地址解析协议)
+* [https://zh.wikipedia.org/wiki/IPv4](https://zh.wikipedia.org/wiki/IPv4)
+* [http://www.cnblogs.com/jcli/archive/2013/02/03/2880671.html](http://www.cnblogs.com/jcli/archive/2013/02/03/2880671.html)
+* [http://blog.chinaunix.net/uid-30256248-id-5695077.html](http://blog.chinaunix.net/uid-30256248-id-5695077.html)
+* [http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html](http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html)
