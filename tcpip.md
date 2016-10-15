@@ -9,13 +9,19 @@
 
 可以明确的看到数据的交流\(Data flow\)是从上到下。
 
-  1. Application-&gt;Transport-&gt;Internet-&gt;Link(电脑A发送数据流程)
-  2. Link-&gt;Internet-&gt;Transport-&gt;Application(电脑B接收数据流程)
+1. Application-&gt;Transport-&gt;Internet-&gt;Link\(电脑A发送数据流程\)
+2. Link-&gt;Internet-&gt;Transport-&gt;Application\(电脑B接收数据流程\)
 
-所以TCP/IP参考模型分为四个层：
-    * 应用层( Application )
-    * 传输层 ( Transport )
-    * 网络互连层 (Internet)
-    * 数据链路层 (Link)
-每一个层创建在第一层提供的服务上，并且为上一层提供服务。
+所以TCP\/IP参考模型分为四个层：
+
+```
+* 应用层( Application )
+* 传输层 ( Transport )
+* 网络互连层 (Internet)
+* 网络接口层 (Link)
+```
+
+![](/assets/QQ截图20161015104355.jpg)
+
+每一个层创建在下一层提供的服务上，并且为上一层提供服务。可以看出我们的HTTP和FTP处于最上层应用层
 
