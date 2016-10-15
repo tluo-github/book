@@ -16,6 +16,6 @@
     * 应用层( Application )
     * 传输层 ( Transport )
     * 网络互连层 (Internet)
-    * 主机到网络层 (Link)
+    * 数据链路层 (Link)
 每一个层创建在第一层提供的服务上，并且为上一层提供服务。
 
