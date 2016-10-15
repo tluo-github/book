@@ -14,14 +14,48 @@
 
 所以TCP\/IP参考模型分为四个层：
 
-```
-* 应用层( Application )
-* 传输层 ( Transport )
-* 网络互连层 (Internet)
-* 网络接口层 (Link)
-```
+* 应用层\( Application \)
+* 传输层 \( Transport \)
+* 网络互连层 \(Internet\)
+* 网络接口层 \(Link\)
 
 ![](/assets/QQ截图20161015104355.jpg)
 
 每一个层创建在下一层提供的服务上，并且为上一层提供服务。可以看出我们的HTTP和FTP处于最上层应用层
+
+### 应用层
+
+> 该层包括所有和应用程序协同工作,利用基础网络交换应用程序专用的数据的协议。应用层是大多数普通与网络相关的程序&gt; 为了通过网络与其他程序通信所使用的层。这个层的处理过程是应用特有的；数据从网络相关的程序以这种应用内部使用 的格式进行传送，然后被编码成标准协议格式
+
+每一个应用层（TCP\/IP参考模型的最高层）协议一般都会使用到两个传输层协议之一： 面向连接的TCP传输控制协议和无连接的包传输的UDP用户数据报文协议。 常用的应用层协议有：
+
+运行在TCP协议上的协议：
+
+* HTTP（Hypertext Transfer Protocol，超文本传输协议），主要用于普通浏览。
+* HTTPS（Hypertext Transfer Protocol over Secure Socket Layer, or HTTP over SSL，安全超文本传输协议）,HTTP协议的安全版本。
+* FTP（File Transfer Protocol，文件传输协议），由名知义，用于文件传输。
+* POP3（Post Office Protocol, version 3，邮局协议），收邮件用。
+* SMTP（Simple Mail Transfer Protocol，简单邮件传输协议），用来发送电子邮件。
+* TELNET（Teletype over the Network，网络电传），通过一个终端（terminal）登陆到网络。
+* SSH（Secure Shell，用于替代安全性差的TELNET），用于加密安全登陆用。
+
+运行在UDP协议上的协议：
+
+* BOOTP（Boot Protocol，启动协议），应用于无盘设备。
+* NTP（Network Time Protocol，网络时间协议），用于网络同步。
+* DHCP（Dynamic Host Configuration Protocol，动态主机配置协议），动态配置IP地址。
+
+其他：
+
+* DNS（Domain Name Service，域名服务），用于完成地址查找，邮件转发等工作（运行在TCP和UDP协议上）。
+* ECHO（Echo Protocol，回绕协议），用于查错及测量应答时间（运行在TCP和UDP协议上）。
+* SNMP（Simple Network Management Protocol，简单网络管理协议），用于网络信息的收集和网络管理。
+* ARP（Address Resolution Protocol，地址解析协议），用于动态解析以太网硬件的地址。
+
+###传输层
+    
+传输层的功能是使源端主机和目标端主机上的对等实体可以进行会话,分为TCP,UDP
+* TCP 协议是一个面向连接的、可靠的协议。(有额外开销)
+* UDP 协议是一个不可靠的、无连接协议。(无额外开销速度快)
+ 
 
