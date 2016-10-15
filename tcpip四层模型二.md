@@ -50,7 +50,7 @@
 关于计算检验和的算法，在RFC1071里定义。我没有详细看这份rfc，但是这篇文章介绍得挺详细的。
 * **source address** 和 **destination address** 分别指源IP地址和目的IP地址。
 * **Options（可选项）**：这是一个可变长的字段。该字段属于可选项，主要用于测试
-* Padding（填充）：因为IP包头长度（Header Length）部分的单位为32bit，所以IP包头的长度必须为32bit的整数倍。因此，在可选项后面，IP协议会填充若干个0，以达到32bit的整数倍。 
+* **Padding（填充）**：因为IP包头长度（Header Length）部分的单位为32bit，所以IP包头的长度必须为32bit的整数倍。因此，在可选项后面，IP协议会填充若干个0，以达到32bit的整数倍。 
 
 
 
