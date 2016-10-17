@@ -117,7 +117,7 @@
 4. 最后服务器接受到确认的ACK报文后,完成三次握手进入ESTABLISHED状态
 
 ### 1.2.2 TCP 4次握手断开
-
+![](http://s5.51cto.com/wyfs02/M02/76/C3/wKioL1Zb_mCCYBXFAAEdquxxit4101.jpg)
 ### 2.
 
 参考链接:
