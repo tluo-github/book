@@ -175,7 +175,10 @@ TCP小结:这里写的都是TCP基础中的基础,这部分能完全了解最好
 ### 2UDP 头格式
 >我们做web程序基本用到的是TCP，对UDP的了解没有TCP多，但最好对UDP能够了解，比较有些功能和中间件UDP还是非常好的，还是安全方面DDOS现在都从TCP转到对UDP的攻击
 
+![](/assets/bb.jpg)
+![](/assets/udpheader.png)
 
+很明显看我UDP头部只有2行84bits，也就是8bytes,TCP的固定头部是20bytes，所以UDP比TCP更快，但少了咯些数据就少了可靠性。这就是从源码级别自己得出结论
 
 参考链接:
 
