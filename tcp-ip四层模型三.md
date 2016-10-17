@@ -53,7 +53,9 @@
 9. Checksum\(校验和\),长度16bits,对整个的TCP报文段，包括TCP头部和TCP数据，以16位字进行计算所得。这是一个强制性的字段。
 
 10. Urgent Pointer（紧急指针）,长度16bits,紧急指针指出在本报文段中的紧急数据的最后一个字节的序号。
+
 11. Options（选项字段），长度可变。TCP首部可以有多达40字节的可选信息，用于把附加信息传递给终点，或用来对齐其它选项。 这部分最多包含40字节，因为TCP头部最长是60字节（其中还包含前面讨论的20字节的固定部分）
+
 
 > * 第一个字段kind-选项类型
 > * 第二个字段length\(如果有的话\)指定该选项的总长度，该长度包括kind字段和length字段占据的2字节。
@@ -101,7 +103,9 @@
 * FIN\_WAIL\_2 ：（主动关闭） FIN\_WAIL\_1只收到ACK没有收到FIN\(说明还有数据传输,如果也收到了FIN就直接进入TIME\_WAIL\)，等待对方关闭请求
 
 * TIME\_WAIT ：完成双向关闭,等待所有分组死掉
+
 * CLOSING ： 两边同时尝试关闭
+
 * CLOSE\_WAIT : \(被动关闭\)收到关闭请求，已确认
 * LAST\_ACK:\(被动关闭\)等待最有一个确认\(收到FIN\)，等待所有分组死掉
 
@@ -109,42 +113,51 @@
 > ![](http://coolshell.cn//wp-content/uploads/2014/05/tcp_open_close.jpg)
 
 ### 1.2.1 TCP 3次握手链接
+
 ![TCP创建3次握手](http://s4.51cto.com/wyfs02/M00/76/C3/wKiom1Zb-1bhSsrQAAECUogyt_0364.jpg)
 
-1. Client(客户端) 发送SYN报文(SYN为1),告诉Server(服务器端)打算链接服务器端口,以及初始化序号(Inital Sequence Number 缩写为:ISN)，客户端进入SYN_SENYT状态
-2. Server返回保护服务器的初始化seq(sequence Number),同时将确认号(ACK)设置为Client发送来的ISN+1,及ACK=ISN+1(在上面整图中可以看到ACK=X+1)，服务端进入SYN_RCVD状态
-3. 客户端收到SYN,ACK后，将确认号(ACK)设置为服务器的seq+1,发送给服务端，客户端进入ESTABLISHED状态
+1. Client\(客户端\) 发送SYN报文\(SYN为1\),告诉Server\(服务器端\)打算链接服务器端口,以及初始化序号\(Inital Sequence Number 缩写为:ISN\)，客户端进入SYN\_SENYT状态
+2. Server返回保护服务器的初始化seq\(sequence Number\),同时将确认号\(ACK\)设置为Client发送来的ISN+1,及ACK=ISN+1\(在上面整图中可以看到ACK=X+1\)，服务端进入SYN\_RCVD状态
+3. 客户端收到SYN,ACK后，将确认号\(ACK\)设置为服务器的seq+1,发送给服务端，客户端进入ESTABLISHED状态
 4. 最后服务器接受到确认的ACK报文后,完成三次握手进入ESTABLISHED状态
 
 ### 1.2.2 TCP 4次握手断开
+
 ![](http://s5.51cto.com/wyfs02/M02/76/C3/wKioL1Zb_mCCYBXFAAEdquxxit4101.jpg)
+
 > 由于TCP连接是全双工的，因此每个方向都必须单独进行关闭,发送方和接收方都需要Fin和Ack,意思就是客户端，服务端都要确认和关闭。这原则是当一方完成它的数据发送任务后就能发送一个FIN来终止这个方向的连接。收到一个 FIN只意味着这一方向上没有数据流动，一个TCP连接在收到一个FIN后仍能发送数据。首先进行关闭的一方将执行主动关闭，而另一方执行被动关闭。
 
 1. 客户端发送一个关闭请教FIN
-2. 服务端接受到后发送ACK确认(特别注意服务器这时可能要有数据没处理完所以有了下一步)
+2. 服务端接受到后发送ACK确认\(特别注意服务器这时可能要有数据没处理完所以有了下一步\)
 3. 服务端发送关闭请求FIN
 4. 客户端收到后发送ACK确认
 
 思考:
 
 1. 为什么建立连接协议是三次握手，而关闭连接却是四次握手呢？
- >这是因为服务端在LISTEN状态下的SOCKET当收到SYN报文的建连请求后，它可以把ACK和SYN（ACK起应答作用，而SYN起同步作用）放在一个报文里来发送。但关闭连接时，当收到对方的FIN报文通知时，它仅仅表示对方没有数据发送给你了；但未必你所有的数据都全部发送给对方了，所以你可以未必会马上会关闭SOCKET,也即你可能还需要发送一些数据给对方之后，再发送FIN报文给对方来表示你同意现在可以关闭连接了，所以它这里的ACK报文和FIN报文多数情况下都是分开发送的。
 
-2. 为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态？
-> 这是因为虽然双方都同意关闭连接了，而且握手的4个报文也都协调和发送完毕，按理可以直接回到CLOSED状态（就好比从SYN_SEND状态到ESTABLISH状态那样）；但是因为我们必须要假想网络是不可靠的，你无法保证你最后发送的ACK报文会一定被对方收到，因此对方处于LAST_ACK状态下的SOCKET可能会因为超时未收到ACK报文，而重发FIN报文，所以这个TIME_WAIT状态的作用就是用来重发可能丢失的ACK报文。
+  > 这是因为服务端在LISTEN状态下的SOCKET当收到SYN报文的建连请求后，它可以把ACK和SYN（ACK起应答作用，而SYN起同步作用）放在一个报文里来发送。但关闭连接时，当收到对方的FIN报文通知时，它仅仅表示对方没有数据发送给你了；但未必你所有的数据都全部发送给对方了，所以你可以未必会马上会关闭SOCKET,也即你可能还需要发送一些数据给对方之后，再发送FIN报文给对方来表示你同意现在可以关闭连接了，所以它这里的ACK报文和FIN报文多数情况下都是分开发送的。
+
+2. 为什么TIME\_WAIT状态还需要等2MSL后才能返回到CLOSED状态？
+
+  > 这是因为虽然双方都同意关闭连接了，而且握手的4个报文也都协调和发送完毕，按理可以直接回到CLOSED状态（就好比从SYN\_SEND状态到ESTABLISH状态那样）；但是因为我们必须要假想网络是不可靠的，你无法保证你最后发送的ACK报文会一定被对方收到，因此对方处于LAST\_ACK状态下的SOCKET可能会因为超时未收到ACK报文，而重发FIN报文，所以这个TIME\_WAIT状态的作用就是用来重发可能丢失的ACK报文。
+
 
 TCP小结:这里写的都是TCP基础中的基础,这部分能完全了解最好，TCP还有很多算法及用法这里就不展开了我也没有深入研究，有兴趣的朋友可以看看
-[http://coolshell.cn/articles/11564.html](http://coolshell.cn/articles/11564.html)
+[http:\/\/coolshell.cn\/articles\/11564.html](http://coolshell.cn/articles/11564.html)
+
+### 2.实战分享TCP三次握手过程
+
+> 理论写了这么多，写得累，看得估计跟累，现在咋们直接提枪上马实战看看。这里使用Wireshar为抓包工具，来分析连接我自己的网站[http://www.jsh315.com](http://www.jsh315.com),关于wireshar的下载使用，请自行google，10分钟内应该能解决
 
 
-### 2.
 
 
 参考链接:
 
 * [https:\/\/zh.wikipedia.org\/wiki\/传输控制协议](https://zh.wikipedia.org/wiki/传输控制协议)
 * [https:\/\/zhangbinalan.gitbooks.io\/protocol\/content\/tcpbao\_wen\_ge\_shi.html](https://zhangbinalan.gitbooks.io/protocol/content/tcpbao_wen_ge_shi.html)
-* [http://coolshell.cn/articles/11564.html](http://coolshell.cn/articles/11564.html)
-* [http://wangzan18.blog.51cto.com/8021085/1718212](http://wangzan18.blog.51cto.com/8021085/1718212)
-* [http://wzgl08.blog.51cto.com/668144/1666021](http://wzgl08.blog.51cto.com/668144/1666021)
+* [http:\/\/coolshell.cn\/articles\/11564.html](http://coolshell.cn/articles/11564.html)
+* [http:\/\/wangzan18.blog.51cto.com\/8021085\/1718212](http://wangzan18.blog.51cto.com/8021085/1718212)
+* [http:\/\/wzgl08.blog.51cto.com\/668144\/1666021](http://wzgl08.blog.51cto.com/668144/1666021)
 
