@@ -73,8 +73,29 @@
 ### 1.2 TCP 状态机
 > TCP为一个连接定义了11种状态，简单理解就是一个TCP连接的生命周期(搞过Android开发的对比Activity的生命周期一样理解),下面放一张中文版和英文版的TCP状态机图，先大致看看主要看下面解释
 
+![](http://s3.51cto.com/wyfs02/M00/76/C2/wKioL1Zb_J6gV08KAAHRjgX486s686.png)
+(英文版)
+![](http://s5.51cto.com/wyfs02/M00/76/C4/wKiom1ZcA_WBfjVXAALhkWgijbk565.jpg)
+ (中文版)
+> 这里看不懂的就先过知道有这么个周期就行了
 
- 
+图中得知TCP有11种状态,这些可以在电脑命令行中使用netstat命令查询(非常有用,在安全排查,性能排查,这往往是第一个命令)
+* CLOSED : 最开始,也标识结束，因为结束也是回到这里
+* LISTEN : 监听,服务器正在等待连接进入
+* SYN_RCVD : 收到一个请求(收到一个SYN,返回SYN/ACK),尚未确认
+* SYN_SENT : 已经发出连接请求(SYN),尚未确认
+* ESTABLISHED : 建立连接,数据正常传输
+ > 1.SYN_RCVD收到ACK后,状态为ESTABLISHED 
+
+ > 2 SYN_SENT 在收到SYN/ACK,发送ACK后状态为ESTABLISHED
+
+* FIN_WAIT_1 : （主动关闭）收到关闭通知(接受到FIN)，发出关闭请求（发出ACK），等待确认
+* FIN_WAIL_2 ：（主动关闭） FIN_WAIL_1只收到ACK没有收到FIN(说明还有数据传输,如果也收到了FIN就直接进入TIME_WAIL)，等待对方关闭请求
+* TIME_WAIT ：完成双向关闭,等待所有分组死掉
+* CLOSING ： 两边同时尝试关闭
+* CLOSE_WAIT : (被动关闭)收到关闭请求，已确认
+* lAST_ACK:(被动关闭)等待最有一个确认(收到FIN)，等待所有分组死掉
+
 ### 2.
 
 参考链接:
