@@ -52,3 +52,7 @@
 > 
 > * 1. kind=2是最大报文段长度选项,TCP连接初始化时，通信双方使用该选项来协商最大报文段长度（Max Segment Size，MSS）。TCP模块通常将MSS设置为（MTU-40）字节（减掉的这40字节包括20字节的TCP头部和20字节的IP头部）。这样携带TCP报文段的IP数据报的长度就不会超过MTU（假设TCP头部和IP头部都不包含选项字段，并且这也是一般情况），从而避免本机发生IP分片。对以太网而言，MSS值是1460（1500-40）字节。
 
+参考链接:
+
+* [https://zh.wikipedia.org/wiki/传输控制协议](https://zh.wikipedia.org/wiki/传输控制协议)
+* [https://zhangbinalan.gitbooks.io/protocol/content/tcpbao_wen_ge_shi.html](https://zhangbinalan.gitbooks.io/protocol/content/tcpbao_wen_ge_shi.html)
