@@ -124,4 +124,7 @@
 
 * [https:\/\/zh.wikipedia.org\/wiki\/传输控制协议](https://zh.wikipedia.org/wiki/传输控制协议)
 * [https:\/\/zhangbinalan.gitbooks.io\/protocol\/content\/tcpbao\_wen\_ge\_shi.html](https://zhangbinalan.gitbooks.io/protocol/content/tcpbao_wen_ge_shi.html)
+* [http://coolshell.cn/articles/11564.html](http://coolshell.cn/articles/11564.html)
+* [http://wangzan18.blog.51cto.com/8021085/1718212](http://wangzan18.blog.51cto.com/8021085/1718212)
+* [http://wzgl08.blog.51cto.com/668144/1666021](http://wzgl08.blog.51cto.com/668144/1666021)
 
