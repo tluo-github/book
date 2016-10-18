@@ -145,6 +145,12 @@ Vary: Accept-Encoding
 Content-Length: 53369
 ```
 
-
+| Server | 服务器处理web的软件名称常见的:nginx,apache,iis |
+| --- | --- |
+| Date | 时间 |
+| Content-Type | 内容格式 |
+| Connection | 链接状态:keep-alive保持链接，我们前面知道每一个http都会有tcp3次握手创建，这里保持链接减少服务器开销 |
+| Content-Length | 内容长度 |
 
 df
+
