@@ -46,5 +46,5 @@ http协议(超文本传输协议HyperText Transfer Protocol)，它是基于TCP�
 (request流内容)
 ![request](/assets/request.jpg)
 
-(流内容)
+(response流内容)
 ![](/assets/response.jpg)
