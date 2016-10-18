@@ -81,6 +81,7 @@ http协议\(超文本传输协议HyperText Transfer Protocol\)，它是基于TCP
 
 我们上面的请求报头:
 
+```
 GET \/shop\/home\/goods\/doGoodsList?mainId=1&parentId=8&classId=15 HTTP\/1.1
 Host: www.jsh315.com
 User-Agent: Mozilla\/5.0 \(Windows NT 6.1; WOW64; rv:49.0\) Gecko\/20100101 Firefox\/49.0
@@ -90,6 +91,7 @@ Accept-Encoding: gzip, deflate
 Referer: http:\/\/www.jsh315.com\/
 Connection: keep-alive
 Upgrade-Insecure-Requests: 1
+```
 
 | **host\(必须\)** | Host请求报头域主要用于指定被请求资源的Internet主机和端口号 |
 | --- | --- |
@@ -127,3 +129,14 @@ HTTP响应也是由三个部分组成，分别是：状态行、消息报头、�
 * 503 Server Unavailable  //服务器当前不能处理客户端的请求，一段时间后,可能恢复正常
 
 ### 2.2.2 Response 响应报头
+
+我们上面的响应报头:
+```
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 18 Oct 2016 07:50:22 GMT
+Content-Type: text/html;charset=UTF-8
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Length: 53369
+```
