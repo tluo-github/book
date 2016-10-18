@@ -39,3 +39,12 @@
 ### 2.1 HTTP协议定义
 http协议(超文本传输协议HyperText Transfer Protocol)，它是基于TCP协议的应用层传输协议，简单来说就是客户端和服务端进行数据传输的一种规则。直接上图:
 ![](http://www.ruanyifeng.com/blogimg/asset/2016/bg2016081901.jpg)
+>因为是基于TCP的所以那些繁复都都让TCP去做了
+
+但我们在浏览器输入一个网址，浏览器直接是发送一个request请求流,服务器也是直接返回一个response流，那么很自然各种参数和规则就在request流和response流里面,这里我直接实战使用Burp Suite抓包工具来获取我自己站点[http://www.jsh315.com](http://www.jsh315.com)的request,response流:
+
+(request流内容)
+![request](/assets/request.jpg)
+
+(流内容)
+![](/assets/response.jpg)
