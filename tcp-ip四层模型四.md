@@ -79,14 +79,27 @@ http协议\(超文本传输协议HyperText Transfer Protocol\)，它是基于TCP
 
 > 消息报头由一系列的键值对，每一个报头域都是由名字+“：”+空格+值 组成,也允许客户端向服务器端发送一些附加信息或者客户端自身的信息。在做REST Full Api接口时安全相关的信息可以放到头里面
 
-常用的请求报头:
+我们上面的请求报头:
 
+GET \/shop\/home\/goods\/doGoodsList?mainId=1&parentId=8&classId=15 HTTP\/1.1
+Host: www.jsh315.com
+User-Agent: Mozilla\/5.0 \(Windows NT 6.1; WOW64; rv:49.0\) Gecko\/20100101 Firefox\/49.0
+Accept: text\/html,application\/xhtml+xml,application\/xml;q=0.9,\*\/\*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate
+Referer: http:\/\/www.jsh315.com\/
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
 
+| **host\(必须\)** | Host请求报头域主要用于指定被请求资源的Internet主机和端口号 |
+| --- | --- |
+| Accept | Accept请求报头域用于指定客户端接受哪些类型的信息。eg：Accept：image\/gif，text\/html，text\/json |
+| Accept-Charset | 请求报头域用于指定客户端接受的字符集。eg：Accept-Charset:iso-8859-1,gb2312，utf8 |
+| Accept-Encoding | Accept-Encoding请求报头域类似于Accept，但是它是用于指定可接受的内容编码。eg：Accept-Encoding:gzip.deflate. |
+| Accept-Language | Accept-Language请求报头域类似于Accept，但是它是用于指定一种自然语言。eg：Accept-Language:zh-cn |
+| User-Agent | 用户本地的操作系统和浏览器的版本及名称\(是可改的一般Python爬虫都会改成模仿正常用户的信息\) |
 
-
-
-
-
-\(response流内容\)
-![](/assets/response1.jpg)
+### 2.2 Response 响应流
+>在接收和解释请求消息后，服务器返回一个HTTP响应消息。
+HTTP响应也是由三个部分组成，分别是：状态行、消息报头、响应正文
 
