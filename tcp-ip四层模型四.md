@@ -4,7 +4,7 @@
 > 
 > 日期:2016年10月18日
 > 
-> 最底层协议解决了MAC,数据广电转换问题，网络互连层IP协议解决了IP问题，数据传输层解决了数据的传输问题，那么离我们Web开发最近的就是应用层的HTTP协议，基本上HTTP协议也是网页开发必备知识，万物归宗这块了解越深入对以后学习其他的开发语言及框架\(php:ThinkPHP,python:django,java:ssh,spring,springmvc等等\)是非常有帮助的，而且对现在正流行的前端构建也非常有帮助\(vuejs,react,angularjs\)
+> 最底层协议解决了MAC，网络互连层IP协议解决了IP问题，数据传输层解决了数据的传输问题，那么离我们Web开发最近的就是应用层的HTTP协议，基本上HTTP协议也是网页开发必备知识，对这块了解越深入对以后学习其他的开发语言及框架\(php:ThinkPHP,python:django,java:ssh,spring,springmvc等等\)是非常有帮助的，而且对现在正流行的前端构建也非常有帮助\(vuejs,react,angularjs\)
 
 首先我们回顾并整理下我们上面几篇文章中的知识。
 
