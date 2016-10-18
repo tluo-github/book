@@ -152,5 +152,6 @@ Content-Length: 53369
 | Connection | 链接状态:keep-alive保持链接，我们前面知道每一个http都会有tcp3次握手创建，这里保持链接减少服务器开销 |
 | Content-Length | 内容长度 |
 
-df
+### 2.2.3 Response 响应流 正文
+最终用户看的的内容就是浏览器来解析Response正文内容然后渲染到屏幕给用户肉眼看，而这部分内容就是前端人员，程序开发人员常常看到的HTML代码。就是上图中红框下面的内容。
 
