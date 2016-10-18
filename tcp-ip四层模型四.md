@@ -125,3 +125,5 @@ HTTP响应也是由三个部分组成，分别是：状态行、消息报头、�
 * 404 Not Found  //请求资源不存在，eg：输入了错误的URL
 * 500 Internal Server Error //服务器发生不可预期的错误
 * 503 Server Unavailable  //服务器当前不能处理客户端的请求，一段时间后,可能恢复正常
+
+### 2.2.2 Response 响应报头
