@@ -102,13 +102,16 @@ Upgrade-Insecure-Requests: 1
 | User-Agent | 用户本地的操作系统和浏览器的版本及名称\(是可改的一般Python爬虫都会改成模仿正常用户的信息\) |
 
 ### 2.2 Response 响应流
->在接收和解释请求消息后，服务器返回一个HTTP响应消息。
-HTTP响应也是由三个部分组成，分别是：状态行、消息报头、响应正文
+
+> 在接收和解释请求消息后，服务器返回一个HTTP响应消息。
+> HTTP响应也是由三个部分组成，分别是：状态行、消息报头、响应正文
 
 ![](/assets/response1.jpg)
+
 ### 2.2.1 Response 状态栏
->HTTP/1.1 200 OK
-由三部分组成:HTTP版本，状态码，状态码文本描述
+
+> HTTP\/1.1 200 OK
+> 由三部分组成:HTTP版本，状态码，状态码文本描述
 
 **状态码**有三位数字组成，第一个数字定义了响应的类别，且有五种可能取值
 
@@ -120,17 +123,18 @@ HTTP响应也是由三个部分组成，分别是：状态行、消息报头、�
 
 常见状态代码、状态描述、说明：
 
-* 200 OK  //客户端请求成功
-* 400 Bad Request  //客户端请求有语法错误，不能被服务器所理解
-* 401 Unauthorized //请求未经授权，这个状态代码必须和WWW-Authenticate报 //头域一起使用
-* 403 Forbidden  //服务器收到请求，但是拒绝提供服务
-* 404 Not Found  //请求资源不存在，eg：输入了错误的URL
-* 500 Internal Server Error //服务器发生不可预期的错误
-* 503 Server Unavailable  //服务器当前不能处理客户端的请求，一段时间后,可能恢复正常
+* 200 OK  \/\/客户端请求成功
+* 400 Bad Request  \/\/客户端请求有语法错误，不能被服务器所理解
+* 401 Unauthorized \/\/请求未经授权，这个状态代码必须和WWW-Authenticate报 \/\/头域一起使用
+* 403 Forbidden  \/\/服务器收到请求，但是拒绝提供服务
+* 404 Not Found  \/\/请求资源不存在，eg：输入了错误的URL
+* 500 Internal Server Error \/\/服务器发生不可预期的错误
+* 503 Server Unavailable  \/\/服务器当前不能处理客户端的请求，一段时间后,可能恢复正常
 
 ### 2.2.2 Response 响应报头
 
 我们上面的响应报头:
+
 ```
 HTTP/1.1 200 OK
 Server: nginx
@@ -140,3 +144,7 @@ Connection: keep-alive
 Vary: Accept-Encoding
 Content-Length: 53369
 ```
+
+
+
+df
