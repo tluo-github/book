@@ -52,12 +52,13 @@ http协议\(超文本传输协议HyperText Transfer Protocol\)，它是基于TCP
 \(request流内容\)
 ![](/assets/request1.jpg)
 
-由上图可以看到，http请求由请求行，消息报头，请求正文三部分构成 (由于是get请求没有正文)
+由上图可以看到，http请求由请求行，消息报头，请求正文三部分构成 \(由于是get请求没有正文\)
+
 ### 2.11 Request 请求行
 
-第一行就是请求头:GET /shop/home/goods/doGoodsList?mainId=1&parentId=8&classId=15 HTTP/1.1。该行包含3个字段:请求方法,请求资源，HTTP版本 
+第一行就是请求头:GET \/shop\/home\/goods\/doGoodsList?mainId=1&parentId=8&classId=15 HTTP\/1.1。该行包含3个字段:请求方法,请求资源，HTTP版本
 
-请求方法有多种,如下:
+**请求方法**有多种,如下:
 
 1. GET     请求获取Request-URI所标识的资源
 2. POST    在Request-URI所标识的资源后附加新的数据
@@ -68,7 +69,17 @@ http协议\(超文本传输协议HyperText Transfer Protocol\)，它是基于TCP
 7. CONNECT 保留将来使用
 8. OPTIONS 请求查询服务器的性能，或者查询与资源相关的选项和需求
 
->传统的网站常用的是GET和POST,配合现在流行的前后分离后台提供REST Full Api 的风格常用的就是,GET,POST,PUT,DELETE
+> 传统的网站常用的是GET和POST,配合现在流行的前后分离后台提供REST Full Api 的风格常用的就是,GET,POST,PUT,DELETE
+
+**请求资源就是路径**
+
+**最后一个就是HTTP版本** 目前常用的是HTTP1.1,HTTP2.0已经出来了
+
+### 2.11 Request 消息报头
+
+> 消息报头由一系列的键值对，每一个报头域都是由名字+“：”+空格+值 组成,也允许客户端向服务器端发送一些附加信息或者客户端自身的信息。在做REST Full Api接口时安全相关的信息可以放到头里面
+
+常用的请求报头:
 
 
 
