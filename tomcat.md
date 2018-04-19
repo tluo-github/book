@@ -50,8 +50,15 @@ Tomcat有关连接数容易混淆的几个参数:acceptCount、maxConnections、
   maxConnections: Tomcat最多能并发处理的请求连接，NIO模式下默认是10000。
   acceptCount：TCP 完成三次握手后，进入的accept队列大小，默认100。
   
-流程: TCP 三次握手 --> accept 队列 --> maxConnections --> 工作线程
+![](/assets/244379816-5873ab2a162f4_articlex.jpeg)
 
+结合[Tomcat连接器线程模型](#Tomcat连接器线程模型)流程：
+
+* Step 1: TCP 三次握手
+  * 第一次握手 : client 向 server 发送第一个FIN 包时
+    * Clinet: 此时client 会维护一个 socket 队列，如果 socket 等待队列满了，而 client 也会由此返回 connection time out，只要是 client 没有收到 第二次握手SYN+ACK，3s 之后，client 会再次发送，如果依然没有收到，9s 之后会继续发送。
+    
+    * Server: 此时server 会维护一个 SYN 队列，半连接 syn 队列的长度为 max(64, /proc/sys/net/ipv4/tcp_max_syn_backlog)  ，在机器的tcp_max_syn_backlog值在/proc/sys/net/ipv4/tcp_max_syn_backlog下配置，当 server 收到 client 的 SYN 包后，会进行第二次握手发送SYN＋ACK 的包加以确认，client 的 TCP 协议栈会唤醒 socket 等待队列，发出 connect 调用。
 
 ### Keep-Alive示意图
 
