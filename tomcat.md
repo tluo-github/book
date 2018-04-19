@@ -79,15 +79,11 @@ acceptor 接收到连接后会做一些处理，NioEndpoint$Acceptor代码:
      * hands them off to an appropriate processor.
      */
     protected class Acceptor extends AbstractEndpoint.Acceptor {
-
         @Override
         public void run() {
-
             int errorDelay = 0;
-
             // Loop until we receive a shutdown command
             while (running) {
-
                 // Loop if endpoint is paused
                 while (paused && running) {
                     state = AcceptorState.PAUSED;
@@ -97,12 +93,10 @@ acceptor 接收到连接后会做一些处理，NioEndpoint$Acceptor代码:
                         // Ignore
                     }
                 }
-
                 if (!running) {
                     break;
                 }
                 state = AcceptorState.RUNNING;
-
                 try {
                     //if we have reached max connections, wait
                     countUpOrAwaitConnection();
@@ -122,7 +116,6 @@ acceptor 接收到连接后会做一些处理，NioEndpoint$Acceptor代码:
                     }
                     // Successful accept, reset the error delay
                     errorDelay = 0;
-
                     // setSocketOptions() will add channel to the poller
                     // if successful
                     if (running && !paused) {
@@ -149,8 +142,9 @@ acceptor 接收到连接后会做一些处理，NioEndpoint$Acceptor代码:
         }
     }
 ```
-  
 
+这里countUpOrAwaitConnection()判断的就是当前的连接数是否超过maxConnections。  
+  
 ### TCP三次握手四次挥手图
 
  ![](https://camo.githubusercontent.com/289b75e598a895c61fd8330f83864dc062e8fd36/687474703a2f2f636f6f6c7368656c6c2e636e2f2f77702d636f6e74656e742f75706c6f6164732f323031342f30352f7463705f6f70656e5f636c6f73652e6a7067)
