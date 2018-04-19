@@ -192,6 +192,9 @@ netstat -nap | grep SYN_RECV
     1. 当client端的大量请求过来时，首先是OS层的tcp的accept队列帮忙挡住，accept队列满了的话，后续的连接无法进入accept队列，无法交由工作线程处理，client将得到read timeout或者connection reset的错误。
     2. 第二层保护就是，在acceptor线程里头进行缓冲，当连接的socket超过maxConnections的时候，则进行阻塞等待，控制acceptor转给worker线程连接的速度，稍微缓缓，等待worker线程处理响应client。
     
+**遗留疑问**
+
+    
 ### 参考文档
 ---
 
