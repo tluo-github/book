@@ -13,7 +13,8 @@
   - [TCP三次握手四次挥手图](#TCP三次握手四次挥手图)
   - [SYN攻击](#SYN攻击)
   - [Keep-Alive示意图](#Keep-Alive示意图)
-  - [总结](总结)
+  - [总结](#总结)
+  - [参考文档](#参考文档)
 
 
 
@@ -191,18 +192,22 @@ netstat -nap | grep SYN_RECV
     1. 当client端的大量请求过来时，首先是OS层的tcp的accept队列帮忙挡住，accept队列满了的话，后续的连接无法进入accept队列，无法交由工作线程处理，client将得到read timeout或者connection reset的错误。
     2. 第二层保护就是，在acceptor线程里头进行缓冲，当连接的socket超过maxConnections的时候，则进行阻塞等待，控制acceptor转给worker线程连接的速度，稍微缓缓，等待worker线程处理响应client。
     
-### Doc
+### 参考文档
 ---
 
-Tuning Tomcat For A High Throughput, Fail Fast System
+* 《Tomcat内核设计》
 
-PerformanceTuningApacheTomcat-Part2
+* [Tuning Tomcat For A High Throughput, Fail Fast System](http://techblog.netflix.com/2015/07/tuning-tomcat-for-high-throughput-fail.html)
 
-Apache Tomcat 8 Configuration Reference
+* [PerformanceTuningApacheTomcat-Part2](http://www.tomcatexpert.com/sites/default/files/PerformanceTuningApacheTomcat-Part2.pdf)
 
-杜绝假死，Tomcat容器做到自我保护，设置最大连接数
+* [Apache Tomcat 8 Configuration Reference](https://tomcat.apache.org/tomcat-8.5-doc/config/http.html)
 
-聊下并发和Tomcat线程数（Updated）
+* [杜绝假死，Tomcat容器做到自我保护，设置最大连接数](https://yq.aliyun.com/articles/2779)
+
+* [聊下并发和Tomcat线程数（Updated](http://www.cnblogs.com/zhanjindong/p/concurrent-and-tomcat-threads.html)
+
+* [tomcat的acceptCount与maxConnections](https://segmentfault.com/a/1190000008064162)
 
 
     
