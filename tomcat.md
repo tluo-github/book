@@ -16,6 +16,7 @@
 
 ### Tomcat Http 连接器线程模型
 
-Tomcat    To
+    Tomcat 有一个Acceptor来接收Socket连接，Tomcat 有多个工作线程处理Acceptor接收的连接。
+
 
 
