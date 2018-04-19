@@ -156,19 +156,18 @@ maxConnections表示有多少个socket连接到tomcat上。NIO模式下默认是
 比如maxThreads=1000，maxConnections=800，假设某一瞬间的并发时1000，那么最终Tomcat的线程数将会是800，即同时处理800个请求，剩余200进入队列“排队”，如果acceptCount=100，那么有100个请求会被拒掉。
   
   
-### 总结
 
-maxThreads:Tomcat线程池最多能起的线程数；
-minSpareThreads:Tomcat初始化的线程池大小或者说Tomcat线程池最少会有这么多线程。
-maxConnections:Tomcat最多能并发处理的请求（连接）；
-acceptCount:Tomcat维护最大的对列数；
-
-**tomcat最大连接数取决于maxConnections这个值加上acceptCount这个值**，在连接数达到了maxConenctions之后，tomcat仍会保持住连接，但是不处理，等待其它请求处理完毕之后才会处理这个请求。
 
 ### TCP三次握手四次挥手图
 
  ![](https://camo.githubusercontent.com/289b75e598a895c61fd8330f83864dc062e8fd36/687474703a2f2f636f6f6c7368656c6c2e636e2f2f77702d636f6e74656e742f75706c6f6164732f323031342f30352f7463705f6f70656e5f636c6f73652e6a7067)
 
+### SYN攻击
+ 
+在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是 Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址 是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：
+```shell
+netstat -nap | grep SYN_RECV
+```
 
 ### Keep-Alive示意图
 
@@ -181,7 +180,31 @@ acceptCount:Tomcat维护最大的对列数；
 ![](/assets/keep-alive.png)
     
     
+### 总结
+
+* maxThreads:Tomcat线程池最多能起的线程数；
+* minSpareThreads:Tomcat初始化的线程池大小或者说Tomcat线程池最少会有这么多线程。
+* maxConnections:Tomcat最多能并发处理的请求（连接）；
+* acceptCount:Tomcat维护最大的对列数；
+* tomcat最大连接数取决于maxConnections这个值加上acceptCount这个值，在连接数达到了maxConenctions之后，tomcat仍会保持住连接，但是不处理，等待其它请求处理完毕之后才会处理这个请求。
+* tomcat server在tcp的accept队列的大小设置的基础上，对请求连接多做了一层保护，也就是maxConnections的大小限制。
+    1. 当client端的大量请求过来时，首先是OS层的tcp的accept队列帮忙挡住，accept队列满了的话，后续的连接无法进入accept队列，无法交由工作线程处理，client将得到read timeout或者connection reset的错误。
+    2. 第二层保护就是，在acceptor线程里头进行缓冲，当连接的socket超过maxConnections的时候，则进行阻塞等待，控制acceptor转给worker线程连接的速度，稍微缓缓，等待worker线程处理响应client。
     
+### Doc
+---
+
+Tuning Tomcat For A High Throughput, Fail Fast System
+
+PerformanceTuningApacheTomcat-Part2
+
+Apache Tomcat 8 Configuration Reference
+
+杜绝假死，Tomcat容器做到自我保护，设置最大连接数
+
+聊下并发和Tomcat线程数（Updated）
+
+
     
     
     
