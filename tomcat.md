@@ -35,8 +35,9 @@
     
     5. 工作线程将从socket conn 中读取数据流，处理request 并返回 response 等等；然后如果该连接不是Keep-Alive的话，则关闭连接回到空闲线程池，如果是Keep-Alive的话，则等待下一个数据包的到来直到keepAliveTimeout，然后关闭该连接释放回线程池。[查看下方 Keep-Alive示意图](#Keep-Alive示意图)
     
-### Tomcat各种连接数理解    
+### Tomcat连接数参数    
 
+影响
 acceptCount、maxConnections、maxThreads、minSpareThreads
 
 
