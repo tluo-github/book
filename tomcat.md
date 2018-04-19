@@ -66,17 +66,18 @@ Tomcat有关连接数容易混淆的几个参数:acceptCount、maxConnections、
   
   
 
-### Keep-Alive示意图
-
 ### TCP三次握手四次挥手图
 
  ![](https://camo.githubusercontent.com/289b75e598a895c61fd8330f83864dc062e8fd36/687474703a2f2f636f6f6c7368656c6c2e636e2f2f77702d636f6e74656e742f75706c6f6164732f323031342f30352f7463705f6f70656e5f636c6f73652e6a7067)
 
-### No Keep-Alive
+
+### Keep-Alive示意图
+
+#### No Keep-Alive
 
 ![](/assets/no-keep-alive.png)
 
-### Keep-Alive
+#### Keep-Alive
 
 ![](/assets/keep-alive.png)
     
