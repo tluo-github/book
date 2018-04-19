@@ -40,7 +40,8 @@
 Tomcat有关连接数容易混淆的几个参数:acceptCount、maxConnections、maxThreads、minSpareThreads。
 
 按层次区分:
-应用
+* 应用层
+* 内核层
 
 
 ### Keep-Alive示意图
