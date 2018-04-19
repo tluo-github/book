@@ -143,8 +143,25 @@ acceptor 接收到连接后会做一些处理，NioEndpoint$Acceptor代码:
     }
 ```
 
-这里countUpOrAwaitConnection()判断的就是当前的连接数是否超过maxConnections。  
+这里countUpOrAwaitConnection()判断的就是当前的连接数是否超过maxConnections。 超过了就会阻塞等待。没有超过就会进入Tomcat 线程模型的4,5步。
+
+
+
+### 关于maxConnections与maxThreads
+maxConnections表示有多少个socket连接到tomcat上。NIO模式下默认是10000。而maxThreads则是woker线程并发处理请求的最大数。也就是虽然client的socket连接上了，但是可能都在tomcat的task queue里头，等待worker线程处理返回响应。
+
+比如maxThreads=1000，maxConnections=800，假设某一瞬间的并发时1000，那么最终Tomcat的线程数将会是800，即同时处理800个请求，剩余200进入队列“排队”，如果acceptCount=100，那么有100个请求会被拒掉。
   
+  
+### 总结
+
+maxThreads:Tomcat线程池最多能起的线程数；
+minSpareThreads:Tomcat初始化的线程池大小或者说Tomcat线程池最少会有这么多线程。
+maxConnections:Tomcat最多能并发处理的请求（连接）；
+acceptCount:Tomcat维护最大的对列数；
+
+**tomcat最大连接数取决于maxConnections这个值加上acceptCount这个值**，在连接数达到了maxConenctions之后，tomcat仍会保持住连接，但是不处理，等待其它请求处理完毕之后才会处理这个请求。
+
 ### TCP三次握手四次挥手图
 
  ![](https://camo.githubusercontent.com/289b75e598a895c61fd8330f83864dc062e8fd36/687474703a2f2f636f6f6c7368656c6c2e636e2f2f77702d636f6e74656e742f75706c6f6164732f323031342f30352f7463705f6f70656e5f636c6f73652e6a7067)
