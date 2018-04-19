@@ -49,6 +49,8 @@ Tomcat有关连接数容易混淆的几个参数:acceptCount、maxConnections、
 
   maxConnections: Tomcat最多能并发处理的请求连接，NIO模式下默认是10000。
   acceptCount：TCP 完成三次握手后，进入的accept队列大小，默认100。
+  
+流程: TCP 三次握手 --> accept 队列 --> maxConnections --> 工作线程
 
 
 ### Keep-Alive示意图
