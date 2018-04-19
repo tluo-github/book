@@ -37,8 +37,7 @@
     
 ### Tomcat连接数参数    
 
-影响
-acceptCount、maxConnections、maxThreads、minSpareThreads
+Tomcat有关连接数容易混淆的几个参数: acceptCount、maxConnections、maxThreads、minSpareThreads
 
 
 
