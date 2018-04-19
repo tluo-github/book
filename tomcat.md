@@ -42,7 +42,7 @@ Tomcat有关连接数容易混淆的几个参数:acceptCount、maxConnections、
 按层次区分:
 * 应用层
   
-  maxThread : 指工作线程池最大多少工作线程数。默认200。
+  maxThread : 指工作线程池最大多少工作线程数。默认值200。
   minSpareThreads: 指工作线程池初始化多少也即最少多少工作线程数。
 * 内核层
 
