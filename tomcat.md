@@ -37,10 +37,7 @@
     
 ### Tomcat连接数参数    
 
-Tomcat有关连接数容易混淆的几个参数: acceptCount、maxConnections、maxThreads、minSpareThreads
-
-
-
+Tomcat有关连接数容易混淆的几个参数:acceptCount、maxConnections、maxThreads、minSpareThreads。
 
 
 ### Keep-Alive示意图
