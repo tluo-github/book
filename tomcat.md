@@ -55,8 +55,8 @@ Tomcat有关连接数容易混淆的几个参数:acceptCount、maxConnections、
 结合[Tomcat连接器线程模型](#Tomcat连接器线程模型)流程：
 
 * Step 1: TCP 三次握手
-
-
+    
+  [TCP三次握手四次挥手图]()
   
   * 第一次握手 : client 向 server 发送第一个FIN 包此时client 会维护一个 socket 队列，如果 socket 等待队列满了，而 client 也会由此返回 connection time out，只要是 client 没有收到 第二次握手SYN+ACK，3s 之后，client 会再次发送，如果依然没有收到，9s 之后会继续发送。
     
