@@ -7,14 +7,14 @@
 记录学习 Tomcat 相关知识。
 
 ## Talbe of Contents
-  - [Tomcat Http 连接器线程模型](#Tomcat Http 连接器线程模型)
+  - [Tomcat连接器线程模型](#Tomcat连接器线程模型)
   - [工作流](#工作流)
   - [reset](#reset)
   - [checkout](#checkout)
   - [总结](#总结)
 
 
-### Tomcat Http 连接器线程模型
+### Tomcat连接器线程模型
 
   Tomcat 有一个acceptor接收线程来接收Socket连接，Tomcat 有多个工作线程处理Acceptor接收的连接。一次请求传入的处理流程:
 
