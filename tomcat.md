@@ -9,9 +9,7 @@
 ## Talbe of Contents
   - [Tomcat连接器线程模型](#Tomcat连接器线程模型)
   - [Keep-Alive示意图](#Keep-Alive示意图)
-  - [reset](#reset)
-  - [checkout](#checkout)
-  - [总结](#总结)
+
 
 
 ### Tomcat连接器线程模型
