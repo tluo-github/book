@@ -8,7 +8,7 @@
 
 ## Talbe of Contents
   - [Tomcat连接器线程模型](#Tomcat连接器线程模型)
-  - [工作流](#工作流)
+  - [Keep-Alive示意图](#Keep-Alive示意图)
   - [reset](#reset)
   - [checkout](#checkout)
   - [总结](#总结)
@@ -37,6 +37,15 @@
     5. 工作线程将从socket conn 中读取数据流，处理request 并返回 response 等等；然后如果该连接不是Keep-Alive的话，则关闭连接回到空闲线程池，如果是Keep-Alive的话，则等待下一个数据包的到来直到keepAliveTimeout，然后关闭该连接释放回线程池
     
     
+### Keep-Alive示意图
+
+### No Keep-Alive
+
+![](/assets/no-keep-alive.png)
+
+### Keep-Alive
+
+![](/assets/keep-alive.png)
     
     
     
