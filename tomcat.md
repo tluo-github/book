@@ -6,7 +6,7 @@
 
 记录学习 Tomcat 相关知识。
 
-## Talbe of Contents
+## 目录
   - [Tomcat连接器线程模型](#Tomcat连接器线程模型)
   - [Tomcat连接数参数](#Tomcat连接数参数)
   - [关于maxConnections与maxThreads](#关于maxConnections与maxThreads)
